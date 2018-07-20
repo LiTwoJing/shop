@@ -6,5 +6,30 @@
 	<select id="findAll" resultType="Cellphone"> 
 		select * from manage 
 	</select>
+	<!-- 	where：当所有条件都不成立时，不会生成where关键字；当生成的条件以and或者or开头时会自动去掉 -->
+	<select id="search" resultType="Cellphone">
+		select id,cellphone,brand,os,cpuBrand,ram,storage from manage	
+		<where> 
+		  <if test="brand != null and brand !=''">
+		    brand like #{brand}
+		  </if>
+		  <if test="os != null and os !=''">
+		    and os = #{os}
+		  </if>
+	      <if test="cpuBrand != null and cpuBrand !=''">
+	        and cpuBrand = #{cpuBrand}
+	      </if>
+	      <if test="ram != null">
+	        and ram = #{ram}
+	      </if>
+	      <if test="storage != null">
+	        and storage = #{storage}
+	      </if>
+	    </where>
+	</select>
+	
+	<select id="findOne" resultType="Cellphone"> 
+		select * from manage where id = #{id}
+	</select>
 	
 </mapper>

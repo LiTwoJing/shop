@@ -14,7 +14,7 @@ public class SecurityConfid extends WebSecurityConfigurerAdapter{
 		http
 			.authorizeRequests() // 配置页面授权
 			.antMatchers("/login","/user/cellphone/","/user/delit").permitAll() // 登录页面允许所有用户访问（包括匿名）
-			.antMatchers("/**").authenticated() // 其他页面仅限于登录用户访问
+			//.antMatchers("/**").authenticated() // 其他页面仅限于登录用户访问
 			.and()
 			.formLogin() // 配置表单登录
 			.loginPage("/login") // 指定登录页面的路径：显示表单（自己写） GET /login；提交表单（springsecurity自带） POST /login

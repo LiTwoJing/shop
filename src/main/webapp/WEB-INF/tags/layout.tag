@@ -10,30 +10,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="${contextPath}/assets/css/form.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${title}</title>
-
-<link href="${contextPath}/assets/css/form.css" rel="stylesheet">
 <style>
 .menu {
 	display: inline-block;
 }
+.div{position:absolute; right: 0px; top: 0px;}
 </style>
 </head>
 <body>
+<div class="div">
 	<sec:authorize access="isAuthenticated()">
 	<div class="header">
 		<ul class="menu">
 			<li style="display: inline-block;">登陆用户</li>
 			<!--                                principal属性可以拿到当前登录的用户详情（UserDetailsImpl） -->
-			<li style="display: inline-block;">&nbsp;&nbsp;<sec:authentication property="principal.username" /></li>
+			<li style="display: inline-block;">&nbsp;&nbsp;<sec:authentication property="principal.username" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 		</ul>
-		<div style="display: inline-block;">
-			<!-- springsecurity默认的退出路径是：POST /logout，注意：springsecurity自带处理 -->
+		<div style="right:10%;">
 			<form action="${contextPath}/logout" method="post"
 				style="display: inline;">
 				<sec:csrfInput />
-				&nbsp;&nbsp;
 				<button type="submit">退出</button>
 			</form>
 		</div>
@@ -42,17 +41,19 @@
 		</ul>
 	</div>
 	</sec:authorize>
-	
+</div>
+<div class="div">
 <sec:authorize access="isAnonymous()">
 	<div class="header">
 		<ul class="menu">
 			<li style="display: inline-block;"><a href="${contextPath}/login">登陆</a></li>
 		</ul>
 		<ul class="menu">
-			<li style="display: inline-block;"><a href="${contextPath}/user/delit">注册</a></li>
+			<li style="display: inline-block;"><a href="${contextPath}/user/delit">注册</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		</ul>
 	</div>
 </sec:authorize>
+</div>
 	<div class="content">
 		<!-- 取tag参数值 -->
 		<h1>${title}</h1>

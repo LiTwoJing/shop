@@ -30,7 +30,7 @@ public class UserController {
 	public String list(Model model){
 		List<Cellphone> ce = userService.findAll();
 		model.addAttribute("cellphone", ce);
-		return "cellphone-list";
+		return "index";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET,value="/user/delit")

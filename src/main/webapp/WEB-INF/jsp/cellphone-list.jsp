@@ -1,27 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<t:layout title="首页">
-	<h3>商品列表</h3>
-	<ul>
-		<li style="list-style: none; display: inline-block;" >商品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >名称&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >品牌&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >型号&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >操作系统&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >cpu&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >运存&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >固存&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >颜色&nbsp;&nbsp;&nbsp;</li>
-		<li style="list-style: none; display: inline-block;" >描述&nbsp;&nbsp;&nbsp;</li>
-		<c:forEach items="${cellphone}" var="cellphone">
-			<li style="list-style: none;">
-				${cellphone.cellphone}&nbsp;&nbsp;&nbsp;&nbsp;${cellphone.brand}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cellphone.model}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cellphone.os}&nbsp;&nbsp;&nbsp;&nbsp;
-				${cellphone.cpuBrand}&nbsp;&nbsp;&nbsp;&nbsp;${cellphone.ram}&nbsp;&nbsp;&nbsp;&nbsp;${cellphone.storage}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				${cellphone.color}&nbsp;&nbsp;&nbsp;&nbsp;${cellphone.description}
-			</li>
-		</c:forEach>
-	</ul>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+	<style type="text/css">
+	div{
+		margin-bottom: 10px;
+	}
+	
+	li{
+		margin-top: 5px;
+	}
+	</style>
+
+</head>
+
+<t:layout title="手机详情页">
+	<h3>手机详情</h3>
+	
+	<div>
+		<ul>
+			<c:forEach items="${cellphones}" var="cellphone">
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200" >商品</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.cellphone}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">品牌</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.brand}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">型号</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.model}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">操作系统</label>
+				<li style="list-style: none;">&#12288;&#12288;&#12288;&#12288;${cellphone.os}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">cpu</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.cpuBrand}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">运存</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.ram}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">固存</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.storage}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">颜色</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.color}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">描述</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.description}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">价格</label>
+				<li style="list-style: none;">&#12288;&#12288;${cellphone.price}</li>
+			</div>
+			<div>
+				<label for="cellphone" style="font-size: 110%;font-weight: 200">cpu核心数</label>
+				<li style="list-style: none;">&#12288;&#12288;&#12288;&#12288;${cellphone.cpucorenumber}</li>
+			</div>
+			</c:forEach>
+		</ul>
+	</div>
 </t:layout>

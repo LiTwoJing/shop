@@ -1,34 +1,31 @@
 package shop.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.pojo.Cellphone;
 import shop.service.CellphoneService;
 
-
 @Controller
-public class CellphoneController {
-	
+public class CellphoneDetailsController {
 	
 	private CellphoneService cellphoneService;
-	
 	@Autowired
-	public CellphoneController(CellphoneService cellphoneService) {
+	public CellphoneDetailsController(CellphoneService cellphoneService) {
 		this.cellphoneService = cellphoneService;
 	}
 
 
-	@RequestMapping(method=RequestMethod.GET,value="/cellphone/")
-	public String list(Model model){
-		List<Cellphone> ce = cellphoneService.findAll();
-		model.addAttribute("cellphone", ce);
+	@RequestMapping(method=RequestMethod.GET,value="/cellphone/{id}/cellphone-list")
+	public String list(@PathVariable Integer id,Model model){
+		List<Cellphone> cellphones = cellphoneService.findOne(id);
+		model.addAttribute("cellphones", cellphones);
 		return "cellphone-list";
 	}
-	
 }
