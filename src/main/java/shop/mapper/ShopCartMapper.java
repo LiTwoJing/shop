@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import shop.pojo.ShopCart;
+import shop.pojo.ShopCartitems;
 
 public interface ShopCartMapper {
 
@@ -22,5 +22,11 @@ public interface ShopCartMapper {
 					  @Param("cellphoneId") Integer cellphoneId,
 					  @Param("amount") int amount);
 
-	List<ShopCart> findAll(Integer userId);
+	List<ShopCartitems> findAll(Integer userId);
+
+	void delete(Integer cellphoneId);
+
+	void updateAmount(Integer cellphoneId);
+
+	Integer findAmount(Integer cellphoneId);
 }

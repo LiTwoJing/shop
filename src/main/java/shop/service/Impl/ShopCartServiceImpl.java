@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mapper.ShopCartMapper;
-import shop.pojo.ShopCart;
+import shop.pojo.ShopCartitems;
 import shop.service.ShopCartService;
 @Service
 @Transactional
@@ -38,9 +38,20 @@ public class ShopCartServiceImpl implements ShopCartService{
 	}
 
 
-	public List<ShopCart> findAll(Integer userId) {
+	public List<ShopCartitems> findAll(Integer userId) {
 		
 		return shopCartMapper.findAll(userId);
+	}
+
+
+	public void delete(Integer cellphoneId) {
+		Integer fa = shopCartMapper.findAmount(cellphoneId);
+		System.out.println(fa);
+		if(fa==1){
+			shopCartMapper.delete(cellphoneId);
+		}else{
+			shopCartMapper.updateAmount(cellphoneId);
+		}
 	}
 
 	

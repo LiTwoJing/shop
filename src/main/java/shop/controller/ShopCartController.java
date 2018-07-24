@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import shop.pojo.ShopCartitems;
 import shop.pojo.ShopCart;
-import shop.pojo.ShopCartL;
 import shop.service.ShopCartService;
 
 @Controller
@@ -33,19 +33,18 @@ public class ShopCartController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/uc/shopcart")
 	public String findAll(@AuthenticationPrincipal(expression = "customer.id") Integer userId,Model model) {
-		List<ShopCart> sc = shopCartService.findAll(userId);
-		System.out.println(sc.size());
-		System.out.println(sc);
-		model.addAttribute("shopcarts", new ShopCartL(sc));
+		List<ShopCartitems> sc = shopCartService.findAll(userId);
+		ShopCart scl = new ShopCart(sc);
+		model.addAttribute("shopcarts",scl);
 		return "shopcart";
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/uc/shopcart/delect")
-	   public String delect(@RequestParam Integer cellphoneId,
+	public String delete(@RequestParam Integer cellphoneId,
 	                     @AuthenticationPrincipal(expression = "customer.id") Integer userId) {
-		shopCartService.addToCart(userId, cellphoneId, 1);
-	    return "redirect:/cellphone/cellphone-list/" + cellphoneId;
+		shopCartService.delete(cellphoneId);
+	    return "redirect:/uc/shopcart";
 	    }
 	
 }

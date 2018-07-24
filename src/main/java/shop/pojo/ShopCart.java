@@ -1,27 +1,23 @@
 package shop.pojo;
 
+import java.util.List;
 
 public class ShopCart {
-	private Integer amount;
-	private Cellphone cellphone;
+	 private List<ShopCartitems> items;
 
+	    public ShopCart(List<ShopCartitems> ShopCart) {
+			this.items = ShopCart;
+		}
 
-	public Integer getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Integer amount) {
-		this.amount = amount;
-	}
-
-	
-	public Cellphone getCellphone() {
-		return cellphone;
-	}
-
-	public void setCellphone(Cellphone cellphone) {
-		this.cellphone = cellphone;
-	}
-
-
+		public List<ShopCartitems> getItems() {
+			return items;
+		}
+		
+		public Integer Tototal(){
+			Integer total = 0;
+			for(ShopCartitems si :items){
+				total+= si.getCellphone().getPrice() * si.getAmount();
+			}
+			return total;
+		}
 }

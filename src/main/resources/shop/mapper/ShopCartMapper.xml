@@ -23,26 +23,6 @@
 		insert into shopcart values(#{cellphoneId},#{userId},#{amount})
 	</insert>
 	
-	
-	
-	
-	
-	
-	<!--<select id="findCellphoneShopCartId" resultType="Integer">
-		select count(*) from shopcart sc left join shopcartmanager scm on sc.id=scm.shopcartid where scm.manageid=#{cellphone.id}
-	</select>
-	
-	
-	
-	<update id="updateShopCartTotal">
-		update shopcartmanager set total=#{total+cellphone.price} where cellphoneid=#{cellphone.id}
-	</update>
-	
-	<insert id="insertShopCartManagerId">
-		insert into shopcartmanager values(#{cellphone.id},#{id},#{amount})
-	</insert>
-	-->
-	
 	<select id="findAll" resultMap="findShopCart">
 	select 
       sc.amount shopcart_amount,sc.manageid manageid,sc.customerid customerid,
@@ -53,7 +33,7 @@
     where c.id=#{userId}
 	</select>
 	
-	<resultMap	id="findShopCart" type="ShopCart">
+	<resultMap	id="findShopCart" type="ShopCartitems">
 		<id column="customerid"/>
 		<id column="manageid"/>
 		<result column="shopcart_amount" property="amount"/>
@@ -62,5 +42,19 @@
 				<result column="manage_cellphone" property="cellphone"/>
 				<result column="manage_price" property="price"/>
 			</association>
-	</resultMap> 
+	</resultMap>
+	
+	<select id="findAmount" resultType="Integer">
+		select amount from shopcart where manageid=#{cellphoneId}
+	</select>
+	
+	<delete id="delete">
+		delete from shopcart where manageid=#{cellphoneId}
+	</delete> 
+	
+	<update id="updateAmount">
+		update shopcart set amount=amount - 1 where manageid=#{cellphoneId}
+	</update>
+	
+	
 </mapper>
