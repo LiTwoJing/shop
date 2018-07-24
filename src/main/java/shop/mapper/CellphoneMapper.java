@@ -10,6 +10,6 @@ public interface CellphoneMapper {
 
 	List<Cellphone> search(Cellphone cellphone);
 
-	List<Cellphone> findOne(Integer id);
+	Cellphone findOne(Integer id);
 
 }

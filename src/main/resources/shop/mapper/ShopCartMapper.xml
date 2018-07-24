@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="shop.mapper.ShopCartMapper">
+	<select id="findUserID" resultType="Integer">
+		select count(*) from shopcart where customerid = #{userId}
+	</select>
+	
+	<insert id="addShopCart">
+		insert into shopcart values(#{cellphoneId},#{userId},#{amount})
+	</insert>
+	
+	<update id="updateShopCart">
+		update shopcart set amount=amount + #{amount} where manageid=#{cellphoneId}
+	</update>
+	
+	<select id="findCellphoneId" resultType="Integer">
+		select count(*) from shopcart where manageid = #{cellphoneId}
+	</select>
+	
+	<insert id="addCellphone">
+		insert into shopcart values(#{cellphoneId},#{userId},#{amount})
+	</insert>
+	
+	
+	
+	
+	
+	
+	<!--<select id="findCellphoneShopCartId" resultType="Integer">
+		select count(*) from shopcart sc left join shopcartmanager scm on sc.id=scm.shopcartid where scm.manageid=#{cellphone.id}
+	</select>
+	
+	
+	
+	<update id="updateShopCartTotal">
+		update shopcartmanager set total=#{total+cellphone.price} where cellphoneid=#{cellphone.id}
+	</update>
+	
+	<insert id="insertShopCartManagerId">
+		insert into shopcartmanager values(#{cellphone.id},#{id},#{amount})
+	</insert>
+	-->
+	
+	<select id="findAll" resultMap="findShopCart">
+	select 
+      sc.amount shopcart_amount,sc.manageid manageid,sc.customerid customerid,
+      m.id manage_id,m.cellphone manage_cellphone,m.price manage_price 
+    from 
+      customer c left join shopcart sc on sc.customerid=c.id 
+      left join manage m on sc.manageid=m.id 
+    where c.id=#{userId}
+	</select>
+	
+	<resultMap	id="findShopCart" type="ShopCart">
+		<id column="customerid"/>
+		<id column="manageid"/>
+		<result column="shopcart_amount" property="amount"/>
+			<association property="cellphone" javaType="Cellphone">
+				<id column="manage_id" property="id"/>
+				<result column="manage_cellphone" property="cellphone"/>
+				<result column="manage_price" property="price"/>
+			</association>
+	</resultMap> 
+</mapper>

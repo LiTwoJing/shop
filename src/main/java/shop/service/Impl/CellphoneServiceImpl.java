@@ -34,7 +34,7 @@ public class CellphoneServiceImpl implements CellphoneService {
 
 
 	@Override
-	public List<Cellphone> findOne(Integer id) {
+	public Cellphone findOne(Integer id) {
 		return cellphoneMapper.findOne(id);
 	}
 }

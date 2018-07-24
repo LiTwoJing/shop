@@ -101,12 +101,6 @@ public class Cellphone {
 	public void setCpucorenumber(String cpucorenumber) {
 		this.cpucorenumber = cpucorenumber;
 	}
-	@Override
-	public String toString() {
-		return "Cellphone [id=" + id + ", cellphone=" + cellphone + ", brand=" + brand + ", model=" + model + ", os="
-				+ os + ", cpuBrand=" + cpuBrand + ", ram=" + ram + ", storage=" + storage + ", color=" + color
-				+ ", description=" + description + "]";
-	}
 	 
 	 
 }

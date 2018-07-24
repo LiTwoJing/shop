@@ -37,7 +37,7 @@
 			</form>
 		</div>
 		<ul class="menu">
-			<li style="list-style: none;">购物车</li>
+			<li style="list-style: none;"><a href="${contextPath}/uc/shopcart">购物车</a></li>
 		</ul>
 	</div>
 	</sec:authorize>

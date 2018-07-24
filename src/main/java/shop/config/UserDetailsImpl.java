@@ -15,7 +15,6 @@ public class UserDetailsImpl extends User{
 	public UserDetailsImpl(Customer customer) {
 		super(customer.getUsername(),customer.getPassword(), true, true, true, true, 
 				Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
-	
 		this.customer = customer;
 	}
 	public Customer getCustomer() {

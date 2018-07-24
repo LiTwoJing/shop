@@ -22,9 +22,9 @@ public class CellphoneDetailsController {
 	}
 
 
-	@RequestMapping(method=RequestMethod.GET,value="/cellphone/{id}/cellphone-list")
+	@RequestMapping(method=RequestMethod.GET,value="/cellphone/cellphone-list/{id}")
 	public String list(@PathVariable Integer id,Model model){
-		List<Cellphone> cellphones = cellphoneService.findOne(id);
+		Cellphone cellphones = cellphoneService.findOne(id);
 		model.addAttribute("cellphones", cellphones);
 		return "cellphone-list";
 	}

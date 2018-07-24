@@ -70,7 +70,7 @@
 		<label></label>
 		<ul>
 			<c:forEach items="${ces2}" var="c">
-				<li><a href="${contextPath}/cellphone/${c.id}/cellphone-list"> ${c.cellphone}</a></li>
+				<li><a href="${contextPath}/cellphone/cellphone-list/${c.id}"> ${c.cellphone}</a></li>
 			</c:forEach>
 		</ul>
 	</div>
