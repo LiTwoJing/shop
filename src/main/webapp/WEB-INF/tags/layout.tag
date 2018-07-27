@@ -11,6 +11,7 @@
 <html>
 <head>
 <link href="${contextPath}/assets/css/form.css" rel="stylesheet">
+<link href="${contextPath}/assets/css/app.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${title}</title>
 <style>
@@ -28,17 +29,18 @@
 			<li style="display: inline-block;">登陆用户</li>
 			<!--                                principal属性可以拿到当前登录的用户详情（UserDetailsImpl） -->
 			<li style="display: inline-block;">&nbsp;&nbsp;<sec:authentication property="principal.username" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			<li style="list-style: none;padding-top: 4px"><a href="${contextPath}/uc/shopcart">购物车</a></li>
+			<li style="list-style: none;display: inline-block;"><a href="${contextPath}/uc/shopaddress">收货地址管理</a></li>
 		</ul>
-		<div style="right:10%;">
+		<div style="right:10%;">&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&nbsp;&nbsp;&nbsp;
 			<form action="${contextPath}/logout" method="post"
 				style="display: inline;">
 				<sec:csrfInput />
 				<button type="submit">退出</button>
 			</form>
+				
 		</div>
-		<ul class="menu">
-			<li style="list-style: none;"><a href="${contextPath}/uc/shopcart">购物车</a></li>
-		</ul>
+		
 	</div>
 	</sec:authorize>
 </div>

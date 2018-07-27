@@ -13,10 +13,10 @@ public class ShopCart {
 			return items;
 		}
 		
-		public Integer Tototal(){
-			Integer total = 0;
-			for(ShopCartitems si :items){
-				total+= si.getCellphone().getPrice() * si.getAmount();
+		public int Tototal(){
+			int total = 0;
+			for(ShopCartitems item :items){
+				total += item.getCellphone().getPrice() * item.getAmount();
 			}
 			return total;
 		}

@@ -34,8 +34,7 @@ public class ShopCartController {
 	@RequestMapping(method = RequestMethod.GET, value = "/uc/shopcart")
 	public String findAll(@AuthenticationPrincipal(expression = "customer.id") Integer userId,Model model) {
 		List<ShopCartitems> sc = shopCartService.findAll(userId);
-		ShopCart scl = new ShopCart(sc);
-		model.addAttribute("shopcarts",scl);
+		model.addAttribute("shopcarts",new ShopCart(sc));
 		return "shopcart";
 	}
 	
@@ -46,5 +45,18 @@ public class ShopCartController {
 		shopCartService.delete(cellphoneId);
 	    return "redirect:/uc/shopcart";
 	    }
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/uc/shopping-cart/item-dec")
+	public String deleteOne(@RequestParam Integer cellphoneId,
+			@AuthenticationPrincipal(expression = "customer.id") Integer userId) {
+		shopCartService.deleteOne(userId,cellphoneId,1);
+		return "redirect:/uc/shopcart";
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "/uc/shopping-cart/item-inc")
+	public String insertOne(@RequestParam Integer cellphoneId,
+			@AuthenticationPrincipal(expression = "customer.id") Integer userId) {
+		shopCartService.insertOne(cellphoneId,1);
+		return "redirect:/uc/shopcart";
+	}
 	
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="shop.mapper.ShopAddressMapper">
+	<select id="findAll" resultType="ShopAddress">
+		select * from shopaddress
+	</select> 
+	
+	<insert id="insert">
+		insert into shopaddress values(shopaddress_seq.nextval,#{userId},#{shopAddress.username},#{shopAddress.cellphonenum},#{shopAddress.detailaddress})
+	</insert>
+	
+	<delete id="delect">
+		delete from shopaddress where id= #{id}
+	</delete>
+	
+	<select id="findOne" resultType="ShopAddress">
+		select * from shopaddress where id = #{id}
+	</select> 
+	
+	<update id="update">
+		update shopaddress set username=#{username},cellphonenum=#{cellphonenum},detailaddress=#{detailaddress} where id=#{id}
+	</update>
+</mapper>

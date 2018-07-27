@@ -21,12 +21,18 @@
 			<h3 style="color: blue;">用户已退出请重新登录</h3>
 		</c:if>
 	<div>
-		<input type="text" name="username" id="username"/>用户名
+		<label for="username">用户名</label>
+		<input type="text" name="username" id="username"/>
 	</div>
 	
 	<div>
-		<input type="password" name="password" id="password"/>密码
+		<label for="password">密码</label>
+		<input type="password" name="password" id="password"/>
 	</div>
+	<div>
+      <label for="remember-me" style="font-size: 10px">记住我</label>
+      <input type="checkbox" name="remember-me" id="remember-me" checked>    
+    </div>   
 	
 		<button type="submit"> 登录</button>
 	</form>

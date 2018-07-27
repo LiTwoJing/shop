@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop.mapper.OrderMapper">
+	
+	<select id="findShopCartByUserId" resultMap="findShopCart">
+	select 
+      sc.amount shopcart_amount,sc.manageid manageid,sc.customerid customerid,
+      m.id manage_id,m.cellphone manage_cellphone,m.price manage_price 
+    from 
+      shopcart sc  
+      left join manage m on sc.manageid=m.id 
+    where sc.customerid=#{userId}
+	</select>
+	
+	<resultMap	id="findShopCart" type="ShopCartitems">
+		<id column="customerid"/>
+		<id column="manageid"/>
+		<result column="shopcart_amount" property="amount"/>
+			<association property="cellphone" javaType="Cellphone">
+				<id column="manage_id" property="id"/>
+				<result column="manage_cellphone" property="cellphone"/>
+				<result column="manage_price" property="price"/>
+			</association>
+	</resultMap>
+	
+	
+	<select id="findShopAddressByUserId" resultType="ShopAddress">
+		select * from shopaddress
+	</select> 
+	
+	<insert id="insert">
+		insert into orders values(orders_seq.nextval,#{customer.id},#{findtime},#{shopAddress.id})
+	</insert>
+	
+	<delete id="deleteShopCart">
+		delete from shopcart where customerid = #{userId}
+	</delete>
+	
+	<insert id="insertOrderitems">
+		insert into cellphoneorders values(#{orders.id},#{cellphone.id},#{amount})
+	</insert>
+
+<!-- 	<select id="findAll" resultType="Orders">
+		select * from orders
+	</select> -->
+
+</mapper>

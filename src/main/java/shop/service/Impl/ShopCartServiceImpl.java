@@ -44,15 +44,21 @@ public class ShopCartServiceImpl implements ShopCartService{
 	}
 
 
-	public void delete(Integer cellphoneId) {
-		Integer fa = shopCartMapper.findAmount(cellphoneId);
-		System.out.println(fa);
-		if(fa==1){
-			shopCartMapper.delete(cellphoneId);
-		}else{
-			shopCartMapper.updateAmount(cellphoneId);
+	public void deleteOne(Integer userId,Integer cellphoneId, int amount) {
+		ShopCartitems sci = shopCartMapper.findAmount(cellphoneId);
+			if(sci.getAmount()==1){
+				shopCartMapper.delete(cellphoneId);
+			}else{
+				shopCartMapper.updateAmount(cellphoneId,amount);
+			}
 		}
+
+	public void delete(Integer cellphoneId) {
+		shopCartMapper.delete(cellphoneId);
 	}
 
-	
+
+	public void insertOne(Integer cellphoneId, int amount) {
+		shopCartMapper.updateShopCart(cellphoneId,amount);
+	}
 }

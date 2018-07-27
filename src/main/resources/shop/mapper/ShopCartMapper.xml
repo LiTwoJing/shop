@@ -28,9 +28,9 @@
       sc.amount shopcart_amount,sc.manageid manageid,sc.customerid customerid,
       m.id manage_id,m.cellphone manage_cellphone,m.price manage_price 
     from 
-      customer c left join shopcart sc on sc.customerid=c.id 
+      shopcart sc  
       left join manage m on sc.manageid=m.id 
-    where c.id=#{userId}
+    where sc.customerid=#{userId}
 	</select>
 	
 	<resultMap	id="findShopCart" type="ShopCartitems">
@@ -44,7 +44,7 @@
 			</association>
 	</resultMap>
 	
-	<select id="findAmount" resultType="Integer">
+	<select id="findAmount" resultType="ShopCartitems">
 		select amount from shopcart where manageid=#{cellphoneId}
 	</select>
 	
@@ -53,8 +53,7 @@
 	</delete> 
 	
 	<update id="updateAmount">
-		update shopcart set amount=amount - 1 where manageid=#{cellphoneId}
+		update shopcart set amount=amount - #{amount} where manageid=#{cellphoneId}
 	</update>
-	
 	
 </mapper>

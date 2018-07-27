@@ -10,5 +10,9 @@ public interface ShopCartService {
 
 	List<ShopCartitems> findAll(Integer userId);
 
+	void deleteOne(Integer userId,Integer cellphoneId, int amount);
+
 	void delete(Integer cellphoneId);
+
+	void insertOne(Integer cellphoneId, int amount);
 }

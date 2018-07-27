@@ -26,7 +26,7 @@ public interface ShopCartMapper {
 
 	void delete(Integer cellphoneId);
 
-	void updateAmount(Integer cellphoneId);
+	void updateAmount(@Param("cellphoneId") Integer cellphoneId,@Param("amount") int amount);
 
-	Integer findAmount(Integer cellphoneId);
+	ShopCartitems findAmount(Integer cellphoneId);
 }
