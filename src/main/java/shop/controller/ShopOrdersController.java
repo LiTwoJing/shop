@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import shop.controller.form.OrdersForm;
 import shop.pojo.Orders;
+import shop.pojo.OrdersItems;
 import shop.pojo.ShopAddress;
 import shop.pojo.ShopCart;
 import shop.pojo.ShopCartitems;
@@ -49,12 +50,12 @@ public class ShopOrdersController {
 	
 	
 
-//	@RequestMapping(method = RequestMethod.GET, value = "/uc/order/")
-//	public String findAll(@AuthenticationPrincipal(expression = "customer.id") Integer userId,Integer cellphoneId,Model model) {
-//		List<Orders> o = orderService.findAll(userId,cellphoneId);
-//		model.addAttribute("orders",o);
-//		return "order-list";
-//	}
+	@RequestMapping(method = RequestMethod.GET, value = "/uc/order/")
+	public String findAll(@AuthenticationPrincipal(expression = "customer.id") Integer userId,Integer cellphoneId,Model model) {
+		List<OrdersItems> oi = orderService.findAll(userId);
+		model.addAttribute("OrdersItem",oi);
+		return "order-list";
+	}
 	
 	
 	
@@ -70,7 +71,7 @@ public class ShopOrdersController {
 		orderService.insert(ordersForm.toOrders(),userId,new Date());
 		orderService.deleteShopCart(userId);
 		
-		return "order-list";
+		return "redirect:/uc/order/";
 	}
 	
 	

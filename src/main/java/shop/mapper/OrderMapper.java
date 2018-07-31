@@ -13,7 +13,7 @@ import shop.pojo.ShopCartitems;
 
 public interface OrderMapper {
 
-	List<Orders> findAll(Integer userId);
+	List<OrdersItems> findAll(Integer userId);
 
 	List<ShopCartitems> findShopCartByUserId(Integer userId);
 

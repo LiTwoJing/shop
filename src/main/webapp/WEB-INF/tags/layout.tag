@@ -31,6 +31,7 @@
 			<li style="display: inline-block;">&nbsp;&nbsp;<sec:authentication property="principal.username" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 			<li style="list-style: none;padding-top: 4px"><a href="${contextPath}/uc/shopcart">购物车</a></li>
 			<li style="list-style: none;display: inline-block;"><a href="${contextPath}/uc/shopaddress">收货地址管理</a></li>
+			<li style="list-style: none;display: inline-block;"><a href="${contextPath}/cellphone/">首页</a></li>
 		</ul>
 		<div style="right:10%;">&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&nbsp;&nbsp;&nbsp;
 			<form action="${contextPath}/logout" method="post"

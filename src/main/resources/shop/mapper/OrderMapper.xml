@@ -30,7 +30,7 @@
 		select * from shopaddress
 	</select> 
 	
-	<insert id="insert">
+	<insert id="insert" useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
 		insert into orders values(orders_seq.nextval,#{customer.id},#{findtime},#{shopAddress.id})
 	</insert>
 	
@@ -42,8 +42,39 @@
 		insert into cellphoneorders values(#{orders.id},#{cellphone.id},#{amount})
 	</insert>
 
-<!-- 	<select id="findAll" resultType="Orders">
-		select * from orders
-	</select> -->
+ 	<select id="findAll" resultMap="findAllUserid">
+		select
+			o.id orders_id,o.foundtime orders_foundtime,
+			co.ordersid,co.manageid,co.amount cellphoneorders_amount,
+			m.id manage_id,m.cellphone manage_cellphone,m.price manage_price,
+			sa.id shopaddress_id,sa.username shopaddress_username,sa.detailaddress shopaddress_detailaddress,sa.cellphonenum shopaddress_cellphonenum 
+		from 
+			cellphoneorders co inner join orders o  on o.id=co.ordersid 
+			inner join manage m on co.manageid = m.id 
+			inner join shopaddress sa on o.shopaddressid=sa.id 
+		where
+			o.customerid=#{userId}
+	</select>
+	
+	<resultMap type="OrdersItems" id="findAllUserid">
+		<id column="ordersid"/>
+		<id column="manageid"/>
+		<result column="cellphoneorders_amount" property="amount"/>
+		<association property="cellphone" javaType="Cellphone">
+				<id column="manage_id" property="id"/>
+				<result column="manage_cellphone" property="cellphone"/>
+				<result column="manage_price" property="price"/>
+		</association>
+		<association property="orders" javaType="Orders">
+			<id column="orders_id" property="id"/>
+			<result column="orders_foundtime" property="findtime"/>
+			<association property="shopAddress" javaType="ShopAddress">
+				<id column="shopaddress_id" property="id"/>
+				<result column="shopaddress_username" property="username"/>
+				<result column="shopaddress_detailaddress" property="detailaddress"/>
+				<result column="shopaddress_cellphonenum" property="cellphonenum"/>
+			</association>
+		</association>	
+	</resultMap>
 
 </mapper>

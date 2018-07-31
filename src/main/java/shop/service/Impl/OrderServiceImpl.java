@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
-	public List<Orders> findAll(Integer userId, Integer cellphoneId) {
+	public List<OrdersItems> findAll(Integer userId) {
 		return orderMapper.findAll(userId);
 	}
 
@@ -50,13 +50,12 @@ public class OrderServiceImpl implements OrderService {
 		List<ShopCartitems> sci = orderMapper.findShopCartByUserId(userId);
 		for(ShopCartitems shopcartitem:sci){
 			OrdersItems ordersItems = new OrdersItems();
-			Orders o = new Orders();
-			System.out.println("Ordersid"+o.getId());
-			ordersItems.getOrders().setId(o.getId());
+			ordersItems.setOrders(orders);
 			ordersItems.setCellphone(shopcartitem.getCellphone());
 			ordersItems.setAmount(shopcartitem.getAmount());
 			orderMapper.insertOrderitems(ordersItems);
 		}
+		
 	}
 	
 	
