@@ -1,6 +1,10 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <!-- 调用该tag时还需传参title以指定页面标题 -->
 <%@ attribute name="title" required="true"%>
+
+<%@ attribute name="css" fragment="true"%>
+<%@ attribute name="js" fragment="true"%>
+
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -20,6 +24,7 @@
 }
 .div{position:absolute; right: 0px; top: 0px;}
 </style>
+	<jsp:invoke fragment="css"/>
 </head>
 <body>
 <div class="div">
@@ -64,5 +69,7 @@
 		<jsp:doBody />
 	</div>
 	<div class="footer">copyright 2018</div>
+	
+	<jsp:invoke fragment="js"/>
 </body>
 </html>

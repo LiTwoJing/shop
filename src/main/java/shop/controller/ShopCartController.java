@@ -10,25 +10,32 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.pojo.ShopCartitems;
+import shop.pojo.Cellphone;
 import shop.pojo.ShopCart;
+import shop.service.CellphoneService;
 import shop.service.ShopCartService;
 
 @Controller
 public class ShopCartController {
 	
 	private ShopCartService shopCartService;
+	private CellphoneService cellphoneService;
+	
 	@Autowired
-	public ShopCartController(ShopCartService shopCartService) {
+	public ShopCartController(ShopCartService shopCartService, CellphoneService cellphoneService) {
 		this.shopCartService = shopCartService;
+		this.cellphoneService = cellphoneService;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/uc/shopcart/add")
-	   public String add(@RequestParam Integer cellphoneId,
-	                     @AuthenticationPrincipal(expression = "customer.id") Integer userId) {
+	@ResponseBody
+	public Cellphone add(@RequestParam Integer cellphoneId,
+	                  @AuthenticationPrincipal(expression = "customer.id") Integer userId) {
 		shopCartService.addToCart(userId, cellphoneId, 1);
-	    return "redirect:/cellphone/cellphone-list/" + cellphoneId;
+	    return cellphoneService.findOne(cellphoneId);
 	    }
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/uc/shopcart")

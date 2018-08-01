@@ -5,22 +5,18 @@
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-	<style type="text/css">
-	div{
-		margin-bottom: 10px;
-	}
-	
-	li{
-		margin-top: 5px;
-	}
-	</style>
-
+	<link href="${contextPath}/assets/css/cellphone-list.css" rel="stylesheet">
 </head>
-
 <t:layout title="手机详情页">
+  	<jsp:attribute name="css">
+   		<sec:csrfMetaTags />
+  	</jsp:attribute>
+  	<jsp:attribute name="js">
+    	<script src="${contextPath}/assets/vendor/jquery-3.3.1.min.js"></script>
+    	<script src="${contextPath}/assets/js/shopcart-add.js"></script>
+  	</jsp:attribute>
+  	<jsp:body>
 	<h3>手机详情</h3>
 	<div>
 		<ul>
@@ -72,10 +68,8 @@
 	</div>
 	
 	<div>
-		<form action="${contextPath}/uc/shopcart/add" method="post" >
-		<sec:csrfInput/>
-			<input name="cellphoneId" type="hidden" value="${cellphones.id}" />
-			<button type="submit">添加到购物车</button>
-		</form>
+		<button class="addshopcart"  data-cellphone-id="${cellphones.id}">添加到购物车</button>
+		<span id="success" style="color: red;"></span>
 	</div>
+	</jsp:body>
 </t:layout>
