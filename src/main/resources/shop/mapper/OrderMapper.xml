@@ -31,7 +31,7 @@
 	</select> 
 	
 	<insert id="insert" useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
-		insert into orders values(orders_seq.nextval,#{customer.id},#{findtime},#{shopAddress.id})
+		insert into orders values(orders_seq.nextval,#{customer.id},#{findtime},#{shopAddress.id},#{state})
 	</insert>
 	
 	<delete id="deleteShopCart">
@@ -44,7 +44,7 @@
 
  	<select id="findAll" resultMap="findAllUserid">
 		select
-			o.id orders_id,o.foundtime orders_foundtime,
+			o.id orders_id,o.foundtime orders_foundtime,o.state orders_state,
 			co.ordersid,co.manageid,co.amount cellphoneorders_amount,
 			m.id manage_id,m.cellphone manage_cellphone,m.price manage_price,
 			sa.id shopaddress_id,sa.username shopaddress_username,sa.detailaddress shopaddress_detailaddress,sa.cellphonenum shopaddress_cellphonenum 
@@ -68,6 +68,7 @@
 		<association property="orders" javaType="Orders">
 			<id column="orders_id" property="id"/>
 			<result column="orders_foundtime" property="findtime"/>
+			<result column="orders_state" property="state"/>
 			<association property="shopAddress" javaType="ShopAddress">
 				<id column="shopaddress_id" property="id"/>
 				<result column="shopaddress_username" property="username"/>

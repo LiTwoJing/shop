@@ -23,6 +23,8 @@
 					<th>手机号码</th>
 					<th>详细地址</th>
 					<th>订单创建时间</th>
+					<th>订单状态</th>
+					
 				</tr>
 				
 				<c:forEach items="${OrdersItem}" var="OrdersItems">
@@ -34,6 +36,13 @@
 					<td>${OrdersItems.orders.shopAddress.cellphonenum}</td>
 					<td>${OrdersItems.orders.shopAddress.detailaddress}</td>
 					<td>${OrdersItems.orders.findtime}</td>
+					<td>${OrdersItems.orders.stateText()}</td>
+					<td>
+						<form action="" method="post">
+					
+					
+						</form>
+					</td>
 				</tr>
 				</c:forEach>
 				

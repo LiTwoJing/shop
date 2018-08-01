@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import shop.mapper.OrderMapper;
 import shop.pojo.Customer;
+import shop.pojo.OrderState;
 import shop.pojo.Orders;
 import shop.pojo.OrdersItems;
 import shop.pojo.ShopAddress;
@@ -43,6 +44,7 @@ public class OrderServiceImpl implements OrderService {
 		Customer customer = new Customer();
 		customer.setId(userId);
 		orders.setCustomer(customer);
+		orders.setState(OrderState.Created);
 		orderMapper.insert(orders);
 		
 		
