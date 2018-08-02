@@ -1,5 +1,6 @@
 package shop.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,10 @@ public class Orders {
 	private ShopAddress shopAddress;
 	private Date findtime;
 	private OrderState state;
-
+	
+	private List<OrdersItems> items = new ArrayList<>();
+    
+	
 	public Integer getId() {
 		return id;
 	}
@@ -53,6 +57,15 @@ public class Orders {
 	public void setShopCartitems(ShopCartitems shopCartitems) {
 		this.shopCartitems = shopCartitems;
 	}
+	
+	
+	public List<OrdersItems> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrdersItems> items) {
+		this.items = items;
+	}
 
 	public OrderState getState() {
 		return state;
@@ -61,6 +74,16 @@ public class Orders {
 	public void setState(OrderState state) {
 		this.state = state;
 	}
+	
+	
+	public int totalCost() {
+        int result = 0;
+        for (OrdersItems item : items) {
+            result += item.getCellphone().getPrice() * item.getAmount();
+            
+        }
+        return result;
+    }
 	
 	
 	 public String stateText() {

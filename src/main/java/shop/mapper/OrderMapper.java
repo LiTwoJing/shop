@@ -24,5 +24,8 @@ public interface OrderMapper {
 	void deleteShopCart(Integer userId);
 
 	void insertOrderitems(OrdersItems ordersItems);
+
+
+	Orders findOne(@Param("userId")Integer userId,@Param("id")Integer id);
 				
 }

@@ -77,5 +77,30 @@
 			</association>
 		</association>	
 	</resultMap>
-
+	
+	<select id="findOne" resultMap="order">
+		select
+			o.id orders_id,o.state orders_state,
+			co.amount cellphoneorders_amount,co.ordersid,co.manageid,
+			m.id manage_id,m.price manage_price
+		from orders o 
+			inner join cellphoneorders co on o.id=co.ordersid 
+			inner join manage m on co.manageid=m.id 
+		where o.customerid = #{userId} and o.id=#{id}
+	</select>
+	
+	<resultMap type="Orders" id="order">
+		<id column="orders_id" property="id"/>
+		<result column="orders_state" property="state"/>
+		<collection property="items" ofType="OrdersItems">
+			<id column="ordersid"/>
+			<id column="manageid"/>
+			<result column="cellphoneorders_amount" property="amount"/>
+			<association property="cellphone" javaType="Cellphone">
+				<id column="manage_id" property="id"/>
+				<result column="manage_price" property="price"/>
+			</association>
+		</collection>
+	</resultMap>
+	
 </mapper>

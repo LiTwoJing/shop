@@ -34,7 +34,8 @@
 			<li style="display: inline-block;">登陆用户</li>
 			<!--                                principal属性可以拿到当前登录的用户详情（UserDetailsImpl） -->
 			<li style="display: inline-block;">&nbsp;&nbsp;<sec:authentication property="principal.username" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-			<li style="list-style: none;padding-top: 4px"><a href="${contextPath}/uc/shopcart">购物车</a></li>
+			<li style="list-style: none;padding-top: 4px;"><a href="${contextPath}/uc/order/">订单详情</a></li>
+			<li style="list-style: none;"><a href="${contextPath}/uc/shopcart">购物车</a></li>
 			<li style="list-style: none;display: inline-block;"><a href="${contextPath}/uc/shopaddress">收货地址管理</a></li>
 			<li style="list-style: none;display: inline-block;"><a href="${contextPath}/cellphone/">首页</a></li>
 		</ul>

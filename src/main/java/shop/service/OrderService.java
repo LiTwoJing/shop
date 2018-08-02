@@ -21,5 +21,7 @@ public interface OrderService {
 
 	void insert(Orders orders, Integer userId, Date date);
 
+	String payForm(Integer userId, Integer id);
+
 }
 

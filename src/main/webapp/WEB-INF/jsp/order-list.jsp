@@ -24,6 +24,7 @@
 					<th>详细地址</th>
 					<th>订单创建时间</th>
 					<th>订单状态</th>
+					<th></th>
 					
 				</tr>
 				
@@ -38,9 +39,9 @@
 					<td>${OrdersItems.orders.findtime}</td>
 					<td>${OrdersItems.orders.stateText()}</td>
 					<td>
-						<form action="" method="post">
-					
-					
+						<form action="${contextPath}/uc/orders/${OrdersItems.orders.id}/pay" method="post">
+							<sec:csrfInput/>
+							<button type="submit">支付宝支付</button>
 						</form>
 					</td>
 				</tr>
