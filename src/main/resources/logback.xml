@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration>
-  <property name="LOG_HOME" value="${LOG_HOME:-./logs}" />
+  <property name="LOG_HOME" value="${F:/eclipse./logs}" />
 
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>${LOG_HOME}/app.log</file>
