@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ import shop.service.OrderService;
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private OrderMapper orderMapper;
 	private ObjectMapper objectMapper;
@@ -68,6 +72,7 @@ public class OrderServiceImpl implements OrderService {
 		customer.setId(userId);
 		orders.setCustomer(customer);
 		orders.setState(OrderState.Created);
+		logger.debug("插入订单");
 		orderMapper.insert(orders);
 		
 		
@@ -97,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
 			throw new IllegalStateException("只有Created状态的订单才能发起支付");
 		}
 		BigDecimal totalAmount = BigDecimal.valueOf(orders.totalCost()).divide(BigDecimal.valueOf(100));// 订单总金额（元）BigDecimal不会损失精度
-		System.out.println(totalAmount);
+		logger.info("订单总金额"+totalAmount);
 		AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest(); // 即将发送给支付宝的请求（电脑网站支付请求）
 	       alipayRequest.setReturnUrl(alipayReturnUrl); // 浏览器端完成支付后跳转回商户的地址（同步通知）
 	       alipayRequest.setNotifyUrl(alipayNotifyUrl); // 支付宝服务端确认支付成功后通知商户的地址（异步通知）
