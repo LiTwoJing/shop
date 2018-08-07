@@ -14,7 +14,7 @@ import shop.service.CellphoneService;
 
 @Controller
 public class CellphoneDetailsController {
-	
+	//a123
 	private CellphoneService cellphoneService;
 	@Autowired
 	public CellphoneDetailsController(CellphoneService cellphoneService) {
