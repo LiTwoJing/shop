@@ -27,5 +27,7 @@ public interface OrderMapper {
 
 
 	Orders findOne(@Param("userId")Integer userId,@Param("id")Integer id);
+
+	Integer threeDelete();
 				
 }

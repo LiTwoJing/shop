@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -124,4 +125,15 @@ public class OrderServiceImpl implements OrderService {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
+	@Scheduled(cron = "0 0 3 * * *") // 每天凌晨3点执行该方法(s m h 天 月 周几)
+	@Override
+	public void threeDelete(){
+		logger.info("3点了");
+		Integer i = orderMapper.threeDelete();
+		logger.info("已删除"+i+"个订单");
+	}
+	
+	
 }

@@ -103,4 +103,8 @@
 		</collection>
 	</resultMap>
 	
+	<delete id="threeDelete">
+		delete from orders where state='Canceled' and current_timestamp - foundtime >=interval '1' minute
+	</delete>
+	
 </mapper>
