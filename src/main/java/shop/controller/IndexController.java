@@ -7,9 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.pojo.Cellphone;
 import shop.service.CellphoneService;
+import shop.service.IpService;
 
 
 @Controller
@@ -17,10 +20,13 @@ public class IndexController {
 	
 	
 	private CellphoneService cellphoneService;
+	private IpService ipService;
+	
 	
 	@Autowired
-	public IndexController(CellphoneService cellphoneService) {
+	public IndexController(CellphoneService cellphoneService,IpService ipService) {
 		this.cellphoneService = cellphoneService;
+		this.ipService=ipService;
 	}
 
 
@@ -38,4 +44,12 @@ public class IndexController {
 		model.addAttribute("ces2", ce);
 		return "index";
 	}
+	
+	@RequestMapping(method=RequestMethod.GET,value="/ip",produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String ipToProvince(@RequestParam String ip){
+		
+		return ipService.ipToProvince(ip);
+	}
+	
 }
